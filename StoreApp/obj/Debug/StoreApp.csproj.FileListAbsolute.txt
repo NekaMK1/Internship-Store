@@ -1,0 +1,7 @@
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\bin\Debug\StoreApp.exe.config
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\bin\Debug\StoreApp.exe
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\bin\Debug\StoreApp.pdb
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\obj\Debug\StoreApp.csprojAssemblyReference.cache
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\obj\Debug\StoreApp.csproj.CoreCompileInputs.cache
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\obj\Debug\StoreApp.exe
+C:\Users\Neca\Source\Repos\Internship-Store\StoreApp\obj\Debug\StoreApp.pdb
