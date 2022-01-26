@@ -10,21 +10,21 @@ namespace StoreApp
     {
         static void Main(string[] args)
         {
-            ///Example data
+            /// Example data
             Food testFood=new Food("apples","BrandA",1.50,new DateTime(2021,06,14));
             Beverage testBeverage=new Beverage("milk","BrandM",0.99,new DateTime(2022,02,02));
-            Clothes testClothes=new Clothes("T-shirt","BrandT",15.99,"M","violet");
-            Applience testApplience=new Applience("laptop","BrandL",2345,"ModelL",new DateTime(2021,03,03),1.125f);
+            Clothes testClothes=new Clothes("T-shirt","BrandT",15.99,Sizes.M,"violet");
+            Applience testApplience=new Applience("laptop","BrandL",2345,"ModelL",new DateTime(2021,03,03),1.125);
+
+            DateTime purchaseDate=new DateTime(2021,06,14,12,34,56);
 
             CartItem[] cart={
             new CartItem(testFood,2.45,"kg"),
             new CartItem(testBeverage,3,"bottles"),
             new CartItem(testClothes,2,""),
-            new CartItem(testApplience,1,"")
-            };
-            DateTime purchaseDate=new DateTime(2021,06,14,12,34,56);
+            new CartItem(testApplience,1,"")};
+            
             Cashier cashier=new Cashier();
-            ///
             cashier.Print(cart,purchaseDate);
         }
     }
@@ -55,11 +55,12 @@ namespace StoreApp
     {
         public Beverage(string name, string brand, double price, DateTime expirationDate) : base(name, brand, price, expirationDate) { }
     }
+    public enum Sizes{ XS, S, M, L, XL}
     class Clothes : Product
-    {
-        public string Size { get; set; }
+    {        
+        public Sizes Size { get; set; }
         public string Color { get; set; }
-        public Clothes(string name, string brand, double price, string size,string color) : base(name, brand, price)
+        public Clothes(string name, string brand, double price, Sizes size,string color) : base(name, brand, price)
         {
             Size = size;
             Color = color;
@@ -69,12 +70,12 @@ namespace StoreApp
     {
         public string Model { get; set; }
         public DateTime ProductionDate { get; set; }
-        public double Weight { get; set; }
-        public Applience(string name, string brand, double price, string model,DateTime productionDate,double weight) : base(name, brand, price)
+        public double WeightInKg { get; set; }
+        public Applience(string name, string brand, double price, string model,DateTime productionDate,double weightInKg) : base(name, brand, price)
         {
             Model = model;
             ProductionDate = productionDate;
-            Weight = weight;
+            WeightInKg = weightInKg;
         }
     }
     class CartItem
@@ -98,7 +99,6 @@ namespace StoreApp
             StringBuilder receipt=new StringBuilder();
             receipt.AppendLine("Date: "+purchaseDate.ToString("yyyy-mm-dd hh:mm:ss")+"\n");
             receipt.AppendLine("---Products---\n\n");
-            ///receipt.AppendLine();
             foreach (CartItem cartItem in cart)
 	        {
                 if (cartItem.Product is Perishables)
