@@ -9,7 +9,7 @@ namespace StoreApp
         static void Main(string[] args)
         {
             /// Example data
-            Food testFood=new Food("apples","BrandA",1.50,new DateTime(2021,06,14));
+            Food testFood=new Food("apples","Brand A",1.50,new DateTime(2021,06,14));
             Beverage testBeverage=new Beverage("milk","BrandM",0.99,new DateTime(2022,02,02));
             Clothes testClothes=new Clothes("T-shirt","BrandT",15.99,Sizes.M,"violet");
             Applience testApplience=new Applience("laptop","BrandL",2345,"ModelL",new DateTime(2021,03,03),1.125);
@@ -102,7 +102,9 @@ namespace StoreApp
                 if (cartItem.Product is Perishables)
                 {
                     Perishables perishable=(Perishables)cartItem.Product;
-                    receipt.AppendLine(perishable.Name+" - "+perishable.Brand+"\n");
+                    /// In the given format there is no "-" but the example data had a "-" for specifically food or apples in particular.
+                    /// I have decided to follow the format as it was set, but it is no issue to add an exception in the format for food items or apples.
+                    receipt.AppendLine(perishable.Name+" "+perishable.Brand+"\n");
                     receipt.AppendLine(cartItem.Ammount+" x $"+perishable.Price+" = $"+Math.Round(cartItem.Ammount*perishable.Price, 2)+"\n");
                     totalCost=Math.Round(totalCost+cartItem.Ammount*perishable.Price,2);
                     if((perishable.ExpirationDate - purchaseDate).TotalDays<1)
@@ -118,7 +120,7 @@ namespace StoreApp
                 if(cartItem.Product is Clothes)
                 {  
                     Clothes clothes=(Clothes)cartItem.Product;
-                    receipt.AppendLine(clothes.Name+" - "+clothes.Brand+" "+clothes.Size+" "+clothes.Color+"\n");
+                    receipt.AppendLine(clothes.Name+" "+clothes.Brand+" "+clothes.Size+" "+clothes.Color+"\n");
                     receipt.AppendLine(cartItem.Ammount+" x $"+clothes.Price+" = $"+Math.Round(cartItem.Ammount*clothes.Price, 2)+"\n");
                     totalCost=Math.Round(totalCost+cartItem.Ammount*clothes.Price,2);
                     if ((purchaseDate.DayOfWeek != DayOfWeek.Saturday) && (purchaseDate.DayOfWeek != DayOfWeek.Sunday))
@@ -130,7 +132,7 @@ namespace StoreApp
                 if(cartItem.Product is Applience)
                 {
                     Applience applience=(Applience)cartItem.Product;
-                    receipt.AppendLine(applience.Name+" - "+applience.Brand+" "+applience.Model+"\n");
+                    receipt.AppendLine(applience.Name+" "+applience.Brand+" "+applience.Model+"\n");
                     receipt.AppendLine(cartItem.Ammount+" x $"+applience.Price+" = $"+Math.Round(cartItem.Ammount*applience.Price, 2)+"\n");
                     totalCost=Math.Round(totalCost+cartItem.Ammount*applience.Price,2);
                     if(((purchaseDate.DayOfWeek == DayOfWeek.Saturday) || (purchaseDate.DayOfWeek == DayOfWeek.Sunday)) && applience.Price>999)
